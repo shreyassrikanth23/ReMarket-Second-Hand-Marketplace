@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Favorites | ReMarket</title>
+  <meta name="description" content="Quick access to all your bookmarked pre-owned products on ReMarket." />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Banner -->
+  <div class="top-banner">
+    <span>🎓 Campus & City Second-Hand Marketplace | Verified Local Sellers | Zero Commission</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div class="brand-text">Re<span>Market</span></div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Marketplace</a></li>
+          <li>
+            <a href="listings.html">
+              My Listings
+              <span class="badge-count" id="listingsCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="purchases.html">My Purchases</a></li>
+          <li>
+            <a href="favorites.html">
+              Favorites
+              <span class="badge-count" id="favCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="guide.html">Guidelines</a></li>
+          <li><a href="sell.html" class="btn btn-sm btn-nav-sell">+ Sell Product</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+        <div>
+          <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+            My Saved Favorites ❤️
+          </h1>
+          <p style="color: var(--text-muted); font-size: 1.05rem;" id="favoritesCountText">
+            Products you have bookmarked for easy reference.
+          </p>
+        </div>
+        <div>
+          <a href="products.html" class="btn btn-outline btn-sm">Explore More Products</a>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="favoritesEmptyState" style="display: none;">
+        <div class="empty-state">
+          <div class="empty-icon">🤍</div>
+          <h3>Your Favorites List is Empty</h3>
+          <p>You haven't bookmarked any products yet. Click the heart icon on any product in the marketplace to save it here for later.</p>
+          <a href="products.html" class="btn btn-primary">Browse Marketplace</a>
+        </div>
+      </div>
+
+      <!-- Favorites Product Grid -->
+      <section class="products-grid" id="favoritesGrid">
+        <!-- Dynamically rendered via js/favorites.js -->
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🔄 ReMarket</h3>
+          <p>
+            Buy Smart. Sell Easy. Give Products a Second Life. A clean, student-friendly second-hand marketplace designed for safe local exchange.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html?category=Electronics">Electronics</a></li>
+            <li><a href="products.html?category=Laptops">Laptops</a></li>
+            <li><a href="products.html?category=Books">Textbooks</a></li>
+            <li><a href="sell.html">Post an Ad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul class="footer-links">
+            <li><a href="listings.html">My Listings</a></li>
+            <li><a href="purchases.html">My Purchases</a></li>
+            <li><a href="favorites.html">Saved Items</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safety & Trust</h4>
+          <ul class="footer-links">
+            <li><a href="guide.html">Safety Guidelines</a></li>
+            <li><a href="guide.html#scams">Avoiding Scams</a></li>
+            <li><a href="guide.html#rules">Campus Rules</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© ReMarket 2026. All rights reserved.</div>
+        <div>Built for Web Development SEE / Hackathon • Vanilla JS + localStorage</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/favorites.js"></script>
+</body>
+</html>

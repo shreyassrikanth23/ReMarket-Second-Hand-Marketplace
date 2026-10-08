@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | ReMarket</title>
+  <meta name="description" content="View product specifications, seller contact information, condition, and purchase securely on ReMarket." />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Banner -->
+  <div class="top-banner">
+    <span>🎓 Campus & City Second-Hand Marketplace | Verified Local Sellers | Zero Commission</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div class="brand-text">Re<span>Market</span></div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Marketplace</a></li>
+          <li>
+            <a href="listings.html">
+              My Listings
+              <span class="badge-count" id="listingsCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="purchases.html">My Purchases</a></li>
+          <li>
+            <a href="favorites.html">
+              Favorites
+              <span class="badge-count" id="favCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="guide.html">Guidelines</a></li>
+          <li><a href="sell.html" class="btn btn-sm btn-nav-sell">+ Sell Product</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Back Navigation Link -->
+      <div style="margin-bottom: 20px;">
+        <a href="products.html" style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--primary);">
+          ← Back to Marketplace
+        </a>
+      </div>
+
+      <!-- Error / Product Not Found Container -->
+      <div id="productNotFound" style="display: none;">
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <h3>Product Not Found</h3>
+          <p id="notFoundMessage">The product listing you are looking for does not exist or may have been deleted.</p>
+          <a href="products.html" class="btn btn-primary">Browse Other Products</a>
+        </div>
+      </div>
+
+      <!-- Details Layout Grid -->
+      <section class="details-layout" id="detailsContainer" style="display: none;">
+        
+        <!-- Left Column: Product Image Gallery -->
+        <div class="details-gallery">
+          <div class="main-image-frame">
+            <img id="detailImage" src="" alt="Product Image" />
+          </div>
+          <div style="background: var(--bg-page); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+            <span>🛡️</span>
+            <span><strong>Buyer Protection:</strong> Inspect the product physically in a safe campus spot before confirming.</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Product Meta, Pricing, Description, Seller Card -->
+        <div class="details-info">
+          
+          <div class="details-badges">
+            <span class="badge badge-category" id="detailCategory">Category</span>
+            <span class="badge badge-condition" id="detailCondition">Condition</span>
+            <span class="badge" id="detailStatus">Status</span>
+            <span class="product-id-tag">ID: <span id="detailId">PROD-000</span></span>
+          </div>
+
+          <h1 class="details-title" id="detailTitle">Product Title</h1>
+          
+          <div class="details-price" id="detailPrice">₹0</div>
+
+          <div class="details-location">
+            <span>📍</span>
+            <span id="detailLocation">Location</span>
+          </div>
+
+          <!-- Description Block -->
+          <div class="details-section-title">Product Description</div>
+          <p class="details-description" id="detailDescription">Loading description...</p>
+
+          <!-- Seller Information Card -->
+          <div class="seller-card">
+            <div class="seller-header">
+              <div class="seller-avatar" id="sellerAvatar">S</div>
+              <div>
+                <div class="seller-name" id="sellerName">Seller Name</div>
+                <div class="seller-role">Verified Campus Seller</div>
+              </div>
+            </div>
+
+            <div class="seller-contacts">
+              <div class="contact-row">
+                <span>📧</span>
+                <a href="#" id="sellerEmail" style="color: var(--primary); text-decoration: underline;">email@example.com</a>
+              </div>
+              <div class="contact-row">
+                <span>📞</span>
+                <a href="#" id="sellerPhone" style="color: var(--primary); font-weight: 600;">+91 0000000000</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="details-actions">
+            <button class="btn btn-primary" id="buyNowBtn" onclick="openBuyModal()" style="flex: 1.5; padding: 14px;">
+              🛍️ Buy Now
+            </button>
+            <button class="btn btn-secondary" id="detailFavBtn" onclick="handleDetailFavoriteClick()" style="flex: 1;">
+              🤍 Add to Favorites
+            </button>
+            <button class="btn btn-outline" id="contactSellerBtn" onclick="openContactModal()" style="flex: 1;">
+              💬 Contact Seller
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 1. Buy Confirmation Modal -->
+  <div class="modal-overlay" id="buyConfirmModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirm Your Purchase</h3>
+        <button class="btn-close-modal" onclick="closeBuyModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 14px; color: var(--text-body);">
+          You are about to purchase the following item directly from the student seller:
+        </p>
+
+        <div class="receipt-box">
+          <div class="receipt-row"><span>Item:</span> <strong id="modalProdName">-</strong></div>
+          <div class="receipt-row"><span>Seller:</span> <span id="modalProdSeller">-</span></div>
+          <div class="receipt-row total"><span>Amount:</span> <span id="modalProdPrice">₹0</span></div>
+        </div>
+
+        <div class="form-group" style="margin-top: 18px;">
+          <label for="buyerNameInput" style="font-size: 0.9rem; font-weight: 600;">Your Name / Student ID:</label>
+          <input 
+            type="text" 
+            id="buyerNameInput" 
+            class="form-control" 
+            placeholder="e.g. Student Buyer (Hostel 3)"
+            value="College Student Buyer"
+          />
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 12px;">
+          * Note: This is an instant handshake confirmation. Clicking Confirm marks the item as SOLD and generates your official receipt.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeBuyModal()">Cancel</button>
+        <button class="btn btn-success" onclick="confirmPurchase()">✓ Confirm Purchase</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Purchase Completed Receipt Modal -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: var(--success-bg);">
+        <h3 style="color: var(--success);">🎉 Purchase Successful!</h3>
+        <button class="btn-close-modal" onclick="closeReceiptModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-body); margin-bottom: 12px;">
+          Congratulations! Your purchase has been recorded and saved to <strong>My Purchases</strong>.
+        </p>
+
+        <div class="receipt-box">
+          <div class="receipt-row"><span>Transaction ID:</span> <strong id="receiptTxnId" style="font-family: monospace; color: var(--primary);">-</strong></div>
+          <div class="receipt-row"><span>Item:</span> <span id="receiptItem">-</span></div>
+          <div class="receipt-row"><span>Amount Paid:</span> <strong id="receiptPrice">-</strong></div>
+          <div class="receipt-row"><span>Date & Time:</span> <span id="receiptDate">-</span></div>
+          <div class="receipt-row"><span>Seller:</span> <span id="receiptSeller">-</span></div>
+          <div class="receipt-row"><span>Buyer:</span> <span id="receiptBuyer">-</span></div>
+          <div class="receipt-row"><span>Status:</span> <span class="badge badge-available">● Completed</span></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeReceiptModal()">Close</button>
+        <a href="purchases.html" class="btn btn-primary">View in My Purchases</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Contact Seller Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Contact <span id="contactSellerName">Seller</span></h3>
+        <button class="btn-close-modal" onclick="closeContactModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 16px; color: var(--text-body);">
+          Reach out directly to schedule a campus meetup or inquire about the product:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="#" id="contactPhoneLink" class="btn btn-outline" style="justify-content: flex-start; gap: 12px; padding: 14px;">
+            <span style="font-size: 1.3rem;">📞</span>
+            <div style="text-align: left;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Phone / Call Directly</div>
+              <strong id="contactPhoneText">+91 0000000000</strong>
+            </div>
+          </a>
+
+          <a href="#" id="contactEmailLink" class="btn btn-outline" style="justify-content: flex-start; gap: 12px; padding: 14px;">
+            <span style="font-size: 1.3rem;">✉️</span>
+            <div style="text-align: left;">
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Send Direct Email</div>
+              <strong>Inquire via Email</strong>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 18px; padding: 12px; background: var(--warning-bg); border-radius: var(--radius-sm); font-size: 0.85rem; color: #92400e;">
+          ⚠️ <strong>Safety Reminder:</strong> Always meet in broad daylight at popular campus spots (like the canteen or library) and never send advance token payments.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeContactModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🔄 ReMarket</h3>
+          <p>
+            Buy Smart. Sell Easy. Give Products a Second Life. A clean, student-friendly second-hand marketplace designed for safe local exchange.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html?category=Electronics">Electronics</a></li>
+            <li><a href="products.html?category=Laptops">Laptops</a></li>
+            <li><a href="products.html?category=Books">Textbooks</a></li>
+            <li><a href="sell.html">Post an Ad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul class="footer-links">
+            <li><a href="listings.html">My Listings</a></li>
+            <li><a href="purchases.html">My Purchases</a></li>
+            <li><a href="favorites.html">Saved Items</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safety & Trust</h4>
+          <ul class="footer-links">
+            <li><a href="guide.html">Safety Guidelines</a></li>
+            <li><a href="guide.html#scams">Avoiding Scams</a></li>
+            <li><a href="guide.html#rules">Campus Rules</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© ReMarket 2026. All rights reserved.</div>
+        <div>Built for Web Development SEE / Hackathon • Vanilla JS + localStorage</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/details.js"></script>
+</body>
+</html>

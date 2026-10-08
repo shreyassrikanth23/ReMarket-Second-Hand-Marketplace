@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReMarket - Second-Hand Products Marketplace</title>
+  <meta name="description" content="Buy Smart. Sell Easy. Give Products a Second Life. Trusted student and local marketplace." />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Banner -->
+  <div class="top-banner">
+    <span>🎓 Campus & City Second-Hand Marketplace | Verified Local Sellers | Zero Commission</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div class="brand-text">Re<span>Market</span></div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Marketplace</a></li>
+          <li>
+            <a href="listings.html">
+              My Listings
+              <span class="badge-count" id="listingsCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="purchases.html">My Purchases</a></li>
+          <li>
+            <a href="favorites.html">
+              Favorites
+              <span class="badge-count" id="favCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="guide.html">Guidelines</a></li>
+          <li><a href="sell.html" class="btn btn-sm btn-nav-sell">+ Sell Product</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content" style="padding-top: 0;">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-tagline">Trusted Campus & Local Exchange</span>
+          <h1>Buy Smart. Sell Easy.<br />Give Products a Second Life.</h1>
+          <p>
+            ReMarket empowers students and local residents to buy and sell verified pre-owned electronics, laptops, textbooks, furniture, and bicycles in a trusted, peer-to-peer environment.
+          </p>
+
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary">
+              🔍 Browse Marketplace
+            </a>
+            <a href="sell.html" class="btn btn-secondary">
+              🏷️ Sell Your Product
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>Peer-to-Peer</p>
+            </div>
+            <div class="stat-item">
+              <h3>0%</h3>
+              <p>Commission Fee</p>
+            </div>
+            <div class="stat-item">
+              <h3>Local</h3>
+              <p>Campus Handshake</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Graphic / Featured Card -->
+        <div class="hero-card-preview">
+          <span class="preview-pill">🔥 Trending Deal</span>
+          <img 
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&auto=format&fit=crop&q=80" 
+            alt="Sony WH-1000XM4 Headphones" 
+          />
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="badge badge-category">Electronics</span>
+            <span class="badge badge-condition Like-New">Like New</span>
+          </div>
+          <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 6px;">
+            Sony WH-1000XM4 Wireless ANC
+          </h3>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹13,500</span>
+            <a href="details.html?id=PROD-101" class="btn btn-primary btn-sm">View Item</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section style="padding: 60px 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Popular Categories</h2>
+          <p>Explore high quality second-hand gear organized for easy discovery.</p>
+        </div>
+
+        <div class="categories-grid">
+          <a href="products.html?category=Electronics" class="category-card">
+            <div class="category-icon">🎧</div>
+            <div class="category-title">Electronics</div>
+          </a>
+          <a href="products.html?category=Mobiles" class="category-card">
+            <div class="category-icon">📱</div>
+            <div class="category-title">Mobiles</div>
+          </a>
+          <a href="products.html?category=Laptops" class="category-card">
+            <div class="category-icon">💻</div>
+            <div class="category-title">Laptops</div>
+          </a>
+          <a href="products.html?category=Furniture" class="category-card">
+            <div class="category-icon">🪑</div>
+            <div class="category-title">Furniture</div>
+          </a>
+          <a href="products.html?category=Books" class="category-card">
+            <div class="category-icon">📚</div>
+            <div class="category-title">Books</div>
+          </a>
+          <a href="products.html?category=Bikes" class="category-card">
+            <div class="category-icon">🚲</div>
+            <div class="category-title">Bikes</div>
+          </a>
+          <a href="products.html?category=Sports" class="category-card">
+            <div class="category-icon">🏸</div>
+            <div class="category-title">Sports</div>
+          </a>
+          <a href="products.html?category=Fashion" class="category-card">
+            <div class="category-icon">👕</div>
+            <div class="category-title">Fashion</div>
+          </a>
+          <a href="products.html?category=Other" class="category-card">
+            <div class="category-icon">📦</div>
+            <div class="category-title">Other</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section style="padding: 60px 0; background-color: #ffffff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px;">
+          <div>
+            <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main);">Featured Listings</h2>
+            <p style="color: var(--text-muted);">Hand-picked top verified deals recently added</p>
+          </div>
+          <a href="products.html" class="btn btn-outline btn-sm">View All in Marketplace →</a>
+        </div>
+
+        <div class="products-grid" id="featuredProductsGrid">
+          <!-- Dynamically populated via data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>How It Works</h2>
+          <p>Buying and selling second-hand goods on campus is simple and safe.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Find a Product</h3>
+            <p>Browse through filtered categories, search by keywords, and check condition ratings with full photos and pricing.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Contact the Seller</h3>
+            <p>Directly call, email or WhatsApp the student seller without hidden middleman fees or broker delays.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Buy Safely</h3>
+            <p>Meet up in person at a recommended campus public location, test the product, and complete the instant purchase.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why ReMarket Section -->
+    <section style="padding: 60px 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why ReMarket?</h2>
+          <p>The smarter, greener, and more affordable choice for your everyday needs.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">💰</div>
+            <h4>Affordable</h4>
+            <p>Save up to 70% compared to brand new retail prices on tech, study material, and dorm essentials.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">⚡</div>
+            <h4>Easy to Sell</h4>
+            <p>Post your unused item in under 2 minutes with instant listing and live image preview.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">🌱</div>
+            <h4>Reuse & Recycle</h4>
+            <p>Promote sustainability and circular economy by preventing functional products from reaching landfills.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">📍</div>
+            <h4>Local Sellers</h4>
+            <p>Transact with colleagues and campus neighbors for quick, hassle-free handshakes without shipping costs.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">🛡️</div>
+            <h4>Trusted Marketplace</h4>
+            <p>Follow our curated Trust & Safety guidelines and verified seller profiles for total peace of mind.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🔄 ReMarket</h3>
+          <p>
+            Buy Smart. Sell Easy. Give Products a Second Life. A clean, student-friendly second-hand marketplace designed for safe local exchange.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html?category=Electronics">Electronics</a></li>
+            <li><a href="products.html?category=Laptops">Laptops</a></li>
+            <li><a href="products.html?category=Books">Textbooks</a></li>
+            <li><a href="sell.html">Post an Ad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul class="footer-links">
+            <li><a href="listings.html">My Listings</a></li>
+            <li><a href="purchases.html">My Purchases</a></li>
+            <li><a href="favorites.html">Saved Items</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safety & Trust</h4>
+          <ul class="footer-links">
+            <li><a href="guide.html">Safety Guidelines</a></li>
+            <li><a href="guide.html#scams">Avoiding Scams</a></li>
+            <li><a href="guide.html#rules">Campus Rules</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© ReMarket 2026. All rights reserved.</div>
+        <div>Built for Web Development SEE / Hackathon • Vanilla JS + localStorage</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Load top 4 featured products on the homepage
+    document.addEventListener("DOMContentLoaded", function () {
+      const featuredContainer = document.getElementById("featuredProductsGrid");
+      if (!featuredContainer) return;
+
+      const products = getStoredProducts().slice(0, 4);
+      const favorites = getStoredFavorites();
+      const fallback = "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&auto=format&fit=crop&q=80";
+
+      featuredContainer.innerHTML = "";
+      products.forEach(function (p) {
+        const isFav = favorites.includes(p.id);
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="card-img-wrapper">
+            <img src="${p.imageUrl || fallback}" alt="${p.name}" onerror="this.src='${fallback}'" />
+            <button 
+              class="btn-favorite ${isFav ? 'active' : ''}" 
+              data-fav-id="${p.id}" 
+              onclick="toggleFavorite('${p.id}', event)"
+            >
+              ${isFav ? '❤️' : '🤍'}
+            </button>
+            ${p.status === 'Sold' ? '<span class="sold-overlay">SOLD</span>' : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge badge-category">${p.category}</span>
+              <span class="badge badge-condition ${p.condition.replace(/\s+/g, '-')}">${p.condition}</span>
+            </div>
+            <h3 class="card-title">${p.name}</h3>
+            <div class="card-price">${formatPrice(p.price)}</div>
+            <div class="card-location">📍 ${p.location}</div>
+            <div class="card-footer">
+              <span class="badge ${p.status === 'Sold' ? 'badge-sold' : 'badge-available'}">● ${p.status}</span>
+              <a href="details.html?id=${p.id}" class="btn btn-outline btn-sm">View Details</a>
+            </div>
+          </div>
+        `;
+        featuredContainer.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

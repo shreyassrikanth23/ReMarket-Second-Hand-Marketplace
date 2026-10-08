@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sell Product - Post a Free Listing | ReMarket</title>
+  <meta name="description" content="List your pre-owned product on ReMarket with ease. Reach local campus and city buyers in minutes." />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Banner -->
+  <div class="top-banner">
+    <span>🎓 Campus & City Second-Hand Marketplace | Verified Local Sellers | Zero Commission</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div class="brand-text">Re<span>Market</span></div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Marketplace</a></li>
+          <li>
+            <a href="listings.html">
+              My Listings
+              <span class="badge-count" id="listingsCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="purchases.html">My Purchases</a></li>
+          <li>
+            <a href="favorites.html">
+              Favorites
+              <span class="badge-count" id="favCountBadge" style="display: none;">0</span>
+            </a>
+          </li>
+          <li><a href="guide.html">Guidelines</a></li>
+          <li><a href="sell.html" class="btn btn-sm btn-nav-sell">+ Sell Product</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div class="section-header">
+        <h2>List an Item for Sale</h2>
+        <p>Fill out the details below. Your product will instantly be published to the Marketplace.</p>
+      </div>
+
+      <!-- Sell Form Card -->
+      <div class="form-card">
+        <form id="sellProductForm" novalidate>
+          
+          <div class="form-grid">
+            
+            <!-- 1. Product Name -->
+            <div class="form-group full-width">
+              <label for="productName">Product Name / Title <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="productName" 
+                class="form-control" 
+                placeholder="e.g. Apple MacBook Air M1 256GB Silver"
+                required
+              />
+              <span class="error-message" id="productNameError"></span>
+            </div>
+
+            <!-- 2. Category -->
+            <div class="form-group">
+              <label for="productCategory">Category <span class="required">*</span></label>
+              <select id="productCategory" class="form-control" required>
+                <option value="">Select Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Mobiles">Mobiles</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Books">Books</option>
+                <option value="Bikes">Bikes</option>
+                <option value="Sports">Sports</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="error-message" id="productCategoryError"></span>
+            </div>
+
+            <!-- 3. Price -->
+            <div class="form-group">
+              <label for="productPrice">Price (₹) <span class="required">*</span></label>
+              <input 
+                type="number" 
+                id="productPrice" 
+                class="form-control" 
+                placeholder="e.g. 4500" 
+                min="1"
+                step="1"
+                required
+              />
+              <span class="error-message" id="productPriceError"></span>
+            </div>
+
+            <!-- 4. Condition -->
+            <div class="form-group">
+              <label for="productCondition">Condition <span class="required">*</span></label>
+              <select id="productCondition" class="form-control" required>
+                <option value="">Select Condition</option>
+                <option value="Like New">Like New (Practically unused, pristine)</option>
+                <option value="Excellent">Excellent (Minor cosmetic signs, fully functional)</option>
+                <option value="Good">Good (Normal wear, well maintained)</option>
+                <option value="Fair">Fair (Noticeable wear, functions properly)</option>
+              </select>
+              <span class="error-message" id="productConditionError"></span>
+            </div>
+
+            <!-- 5. Location -->
+            <div class="form-group">
+              <label for="productLocation">Location / Campus Landmark <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="productLocation" 
+                class="form-control" 
+                placeholder="e.g. Campus Library / Indiranagar"
+                required
+              />
+              <span class="error-message" id="productLocationError"></span>
+            </div>
+
+            <!-- 6. Description -->
+            <div class="form-group full-width">
+              <label for="productDescription">Detailed Description <span class="required">*</span></label>
+              <textarea 
+                id="productDescription" 
+                class="form-control" 
+                placeholder="Describe key features, how long you used it, accessories included, and condition details..."
+                required
+              ></textarea>
+              <span class="error-message" id="productDescriptionError"></span>
+            </div>
+
+            <!-- 7. Seller Name -->
+            <div class="form-group">
+              <label for="sellerName">Your Name (Seller) <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="sellerName" 
+                class="form-control" 
+                placeholder="e.g. Rahul Sharma"
+                required
+              />
+              <span class="error-message" id="sellerNameError"></span>
+            </div>
+
+            <!-- 8. Seller Email -->
+            <div class="form-group">
+              <label for="sellerEmail">Email Address <span class="required">*</span></label>
+              <input 
+                type="email" 
+                id="sellerEmail" 
+                class="form-control" 
+                placeholder="e.g. rahul.sharma@example.com"
+                required
+              />
+              <span class="error-message" id="sellerEmailError"></span>
+            </div>
+
+            <!-- 9. Phone Number -->
+            <div class="form-group">
+              <label for="sellerPhone">Phone Number (10 Digits) <span class="required">*</span></label>
+              <input 
+                type="tel" 
+                id="sellerPhone" 
+                class="form-control" 
+                placeholder="e.g. 9876543210"
+                maxlength="10"
+                required
+              />
+              <span class="error-message" id="sellerPhoneError"></span>
+            </div>
+
+            <!-- 10. Product Image URL -->
+            <div class="form-group">
+              <label for="productImage">Product Image URL <span class="required">*</span></label>
+              <input 
+                type="url" 
+                id="productImage" 
+                class="form-control" 
+                placeholder="Paste direct image link (https://...)"
+                required
+              />
+              <span class="error-message" id="productImageError"></span>
+
+              <!-- Demo sample image chips for fast hackathon viva testing -->
+              <div style="margin-top: 8px;">
+                <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">
+                  Demo Image Presets:
+                </span>
+                <div class="sample-image-chips">
+                  <button type="button" class="chip" onclick="setSampleImage('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=700&auto=format&fit=crop&q=80')">💻 Laptop</button>
+                  <button type="button" class="chip" onclick="setSampleImage('https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=700&auto=format&fit=crop&q=80')">📱 Phone</button>
+                  <button type="button" class="chip" onclick="setSampleImage('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=700&auto=format&fit=crop&q=80')">📚 Book</button>
+                  <button type="button" class="chip" onclick="setSampleImage('https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=700&auto=format&fit=crop&q=80')">🚲 Bicycle</button>
+                  <button type="button" class="chip" onclick="setSampleImage('https://images.unsplash.com/photo-1580481077195-c3a8a30ef758?w=700&auto=format&fit=crop&q=80')">🪑 Chair</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Image Preview Box -->
+            <div class="form-group full-width">
+              <label>Image Live Preview</label>
+              <div class="image-preview-box" id="imagePreview">
+                <span>Enter a valid image URL to preview</span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group full-width" style="margin-top: 10px;">
+              <button type="submit" class="btn btn-primary btn-block" style="padding: 14px; font-size: 1.05rem;">
+                🚀 List Product on ReMarket
+              </button>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Success Modal Dialog -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="color: var(--success); display: flex; align-items: center; gap: 8px;">
+          ✓ Listing Published Successfully!
+        </h3>
+      </div>
+      <div class="modal-body" id="modalSuccessInfo">
+        <!-- Injected via js/sell.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="location.reload()">+ Post Another</button>
+        <a href="listings.html" class="btn btn-secondary">My Listings</a>
+        <a href="products.html" class="btn btn-primary">Go to Marketplace</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🔄 ReMarket</h3>
+          <p>
+            Buy Smart. Sell Easy. Give Products a Second Life. A clean, student-friendly second-hand marketplace designed for safe local exchange.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html?category=Electronics">Electronics</a></li>
+            <li><a href="products.html?category=Laptops">Laptops</a></li>
+            <li><a href="products.html?category=Books">Textbooks</a></li>
+            <li><a href="sell.html">Post an Ad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul class="footer-links">
+            <li><a href="listings.html">My Listings</a></li>
+            <li><a href="purchases.html">My Purchases</a></li>
+            <li><a href="favorites.html">Saved Items</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safety & Trust</h4>
+          <ul class="footer-links">
+            <li><a href="guide.html">Safety Guidelines</a></li>
+            <li><a href="guide.html#scams">Avoiding Scams</a></li>
+            <li><a href="guide.html#rules">Campus Rules</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© ReMarket 2026. All rights reserved.</div>
+        <div>Built for Web Development SEE / Hackathon • Vanilla JS + localStorage</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/sell.js"></script>
+</body>
+</html>
