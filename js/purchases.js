@@ -132,8 +132,20 @@ function viewReceipt(transactionId) {
   document.getElementById("modalTxnItem").textContent = record.productName;
   document.getElementById("modalTxnPrice").textContent = formatPrice(record.price);
   document.getElementById("modalTxnDate").textContent = record.purchaseDate;
-  document.getElementById("modalTxnSeller").textContent = record.sellerName;
   document.getElementById("modalTxnBuyer").textContent = record.buyerName || "Verified Buyer";
+  
+  const buyerContactRow = document.getElementById("modalTxnBuyerContactRow");
+  const buyerContactEl = document.getElementById("modalTxnBuyerContact");
+  if (buyerContactRow && buyerContactEl) {
+    const contacts = [record.buyerPhone, record.buyerEmail].filter(Boolean);
+    if (contacts.length > 0) {
+      buyerContactEl.textContent = contacts.join(" | ");
+      buyerContactRow.style.display = "flex";
+    } else {
+      buyerContactRow.style.display = "none";
+    }
+  }
+
   document.getElementById("modalTxnContact").textContent = `${record.sellerEmail} | ${record.sellerPhone}`;
 
   modal.classList.add("active");

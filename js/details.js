@@ -8,6 +8,7 @@ let currentProduct = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   loadProductDetails();
+  setupBuyerFormEvents();
 });
 
 // Load and display product details based on URL query parameter `?id=...`
@@ -107,7 +108,7 @@ function renderProductInfo(product) {
       buyBtn.style.cursor = "not-allowed";
     } else {
       buyBtn.disabled = false;
-      buyBtn.innerHTML = "🛍️ Buy Now";
+      buyBtn.innerHTML = "🛍️ Buy / Book Now";
       buyBtn.className = "btn btn-primary";
     }
   }
@@ -137,7 +138,32 @@ function handleDetailFavoriteClick() {
   updateFavoriteButtonState(currentProduct.id);
 }
 
-// Open "Buy Now" confirmation dialog
+// Attach input listeners to clear errors in real time as the user types
+function setupBuyerFormEvents() {
+  const nameInput = document.getElementById("buyerNameInput");
+  const phoneInput = document.getElementById("buyerPhoneInput");
+  const emailInput = document.getElementById("buyerEmailInput");
+
+  if (nameInput) {
+    nameInput.addEventListener("input", function () {
+      clearBuyerError("buyerNameInput", "buyerNameError");
+    });
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener("input", function () {
+      clearBuyerError("buyerPhoneInput", "buyerPhoneError");
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener("input", function () {
+      clearBuyerError("buyerEmailInput", "buyerEmailError");
+    });
+  }
+}
+
+// Open "Buy / Book Now" confirmation dialog
 function openBuyModal() {
   if (!currentProduct || currentProduct.status === "Sold") {
     showToast("This product is already sold out.", "danger");
@@ -151,7 +177,31 @@ function openBuyModal() {
   document.getElementById("modalProdPrice").textContent = formatPrice(currentProduct.price);
   document.getElementById("modalProdSeller").textContent = currentProduct.sellerName;
 
+  // Clear previous values and error states
+  const nameInput = document.getElementById("buyerNameInput");
+  const phoneInput = document.getElementById("buyerPhoneInput");
+  const emailInput = document.getElementById("buyerEmailInput");
+
+  if (nameInput) {
+    nameInput.value = "";
+    clearBuyerError("buyerNameInput", "buyerNameError");
+  }
+  if (phoneInput) {
+    phoneInput.value = "";
+    clearBuyerError("buyerPhoneInput", "buyerPhoneError");
+  }
+  if (emailInput) {
+    emailInput.value = "";
+    clearBuyerError("buyerEmailInput", "buyerEmailError");
+  }
+
   modal.classList.add("active");
+
+  if (nameInput) {
+    setTimeout(function () {
+      nameInput.focus();
+    }, 100);
+  }
 }
 
 function closeBuyModal() {
@@ -159,12 +209,74 @@ function closeBuyModal() {
   if (modal) modal.classList.remove("active");
 }
 
-// Execute the purchase transaction
+// Simple validation for basic buyer details (Full Name, Mobile Number, Email Address)
+function validateBuyerDetails() {
+  let isValid = true;
+  const nameInput = document.getElementById("buyerNameInput");
+  const phoneInput = document.getElementById("buyerPhoneInput");
+  const emailInput = document.getElementById("buyerEmailInput");
+
+  // 1. Full Name: Required, minimum 2 characters
+  if (!nameInput || !nameInput.value.trim() || nameInput.value.trim().length < 2) {
+    showBuyerError("buyerNameInput", "buyerNameError", "Please enter your full name.");
+    isValid = false;
+  } else {
+    clearBuyerError("buyerNameInput", "buyerNameError");
+  }
+
+  // 2. Mobile Number: Required, 10 digits
+  const cleanPhone = phoneInput ? phoneInput.value.trim().replace(/\D/g, "") : "";
+  if (!phoneInput || cleanPhone.length !== 10) {
+    showBuyerError("buyerPhoneInput", "buyerPhoneError", "Please enter a valid 10-digit mobile number.");
+    isValid = false;
+  } else {
+    clearBuyerError("buyerPhoneInput", "buyerPhoneError");
+  }
+
+  // 3. Email Address: Required, standard email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailInput || !emailRegex.test(emailInput.value.trim())) {
+    showBuyerError("buyerEmailInput", "buyerEmailError", "Please enter a valid email address.");
+    isValid = false;
+  } else {
+    clearBuyerError("buyerEmailInput", "buyerEmailError");
+  }
+
+  return isValid;
+}
+
+function showBuyerError(inputId, errorId, message) {
+  const input = document.getElementById(inputId);
+  const errorEl = document.getElementById(errorId);
+  if (input) input.classList.add("error");
+  if (errorEl) {
+    errorEl.textContent = message;
+    errorEl.style.display = "block";
+  }
+}
+
+function clearBuyerError(inputId, errorId) {
+  const input = document.getElementById(inputId);
+  const errorEl = document.getElementById(errorId);
+  if (input) input.classList.remove("error");
+  if (errorEl) {
+    errorEl.textContent = "";
+    errorEl.style.display = "none";
+  }
+}
+
+// Execute the purchase / booking transaction
 function confirmPurchase() {
   if (!currentProduct) return;
 
-  const buyerNameInput = document.getElementById("buyerNameInput");
-  const buyerName = buyerNameInput && buyerNameInput.value.trim() ? buyerNameInput.value.trim() : "Verified Student Buyer";
+  // Validate only the basic buyer details
+  if (!validateBuyerDetails()) {
+    return;
+  }
+
+  const buyerName = document.getElementById("buyerNameInput").value.trim();
+  const buyerPhone = document.getElementById("buyerPhoneInput").value.trim().replace(/\D/g, "");
+  const buyerEmail = document.getElementById("buyerEmailInput").value.trim();
 
   // Step 1: Generate a unique Transaction ID (e.g. TXN-739102)
   const transactionId = "TXN-" + Math.floor(100000 + Math.random() * 900000);
@@ -190,6 +302,8 @@ function confirmPurchase() {
     sellerEmail: currentProduct.sellerEmail,
     sellerPhone: currentProduct.sellerPhone,
     buyerName: buyerName,
+    buyerPhone: buyerPhone,
+    buyerEmail: buyerEmail,
     purchaseDate: purchaseDate,
     status: "Completed",
     imageUrl: currentProduct.imageUrl
@@ -232,6 +346,11 @@ function showReceiptModal(purchase) {
   document.getElementById("receiptDate").textContent = purchase.purchaseDate;
   document.getElementById("receiptSeller").textContent = purchase.sellerName;
   document.getElementById("receiptBuyer").textContent = purchase.buyerName;
+
+  const buyerContactEl = document.getElementById("receiptBuyerContact");
+  if (buyerContactEl) {
+    buyerContactEl.textContent = `${purchase.buyerPhone || ''} | ${purchase.buyerEmail || ''}`;
+  }
 
   modal.classList.add("active");
 }

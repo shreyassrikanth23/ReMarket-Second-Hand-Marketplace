@@ -136,7 +136,7 @@
           <!-- Action Buttons -->
           <div class="details-actions">
             <button class="btn btn-primary" id="buyNowBtn" onclick="openBuyModal()" style="flex: 1.5; padding: 14px;">
-              🛍️ Buy Now
+              🛍️ Buy / Book Now
             </button>
             <button class="btn btn-secondary" id="detailFavBtn" onclick="handleDetailFavoriteClick()" style="flex: 1;">
               🤍 Add to Favorites
@@ -153,65 +153,111 @@
     </div>
   </main>
 
-  <!-- 1. Buy Confirmation Modal -->
+  <!-- 1. Buy / Book Confirmation Modal -->
   <div class="modal-overlay" id="buyConfirmModal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 480px;">
       <div class="modal-header">
-        <h3>Confirm Your Purchase</h3>
+        <h3 style="display: flex; align-items: center; gap: 8px;">
+          <span>🛍️</span> Confirm Booking
+        </h3>
         <button class="btn-close-modal" onclick="closeBuyModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="margin-bottom: 14px; color: var(--text-body);">
-          You are about to purchase the following item directly from the student seller:
+        <p style="margin-bottom: 12px; color: var(--text-body); font-size: 0.92rem;">
+          Please enter your details below to book this product with the seller:
         </p>
 
-        <div class="receipt-box">
+        <!-- Product Summary snippet -->
+        <div class="receipt-box" style="margin-top: 0; margin-bottom: 16px; padding: 12px 16px;">
           <div class="receipt-row"><span>Item:</span> <strong id="modalProdName">-</strong></div>
           <div class="receipt-row"><span>Seller:</span> <span id="modalProdSeller">-</span></div>
-          <div class="receipt-row total"><span>Amount:</span> <span id="modalProdPrice">₹0</span></div>
+          <div class="receipt-row total" style="padding-top: 6px;"><span>Amount:</span> <span id="modalProdPrice">₹0</span></div>
         </div>
 
-        <div class="form-group" style="margin-top: 18px;">
-          <label for="buyerNameInput" style="font-size: 0.9rem; font-weight: 600;">Your Name / Student ID:</label>
-          <input 
-            type="text" 
-            id="buyerNameInput" 
-            class="form-control" 
-            placeholder="e.g. Student Buyer (Hostel 3)"
-            value="College Student Buyer"
-          />
-        </div>
+        <!-- Buyer Details Form: Full Name, Mobile Number, Email Address ONLY -->
+        <form id="buyerBookingForm" onsubmit="event.preventDefault(); confirmPurchase();" novalidate>
+          
+          <!-- 1. Full Name -->
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label for="buyerNameInput" style="font-size: 0.88rem; font-weight: 600;">
+              Full Name <span class="required" style="color: var(--danger);">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="buyerNameInput" 
+              class="form-control" 
+              placeholder="e.g. Rahul Sharma"
+              autocomplete="name"
+              required
+            />
+            <span class="error-message" id="buyerNameError"></span>
+          </div>
 
-        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 12px;">
-          * Note: This is an instant handshake confirmation. Clicking Confirm marks the item as SOLD and generates your official receipt.
-        </p>
+          <!-- 2. Mobile Number -->
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label for="buyerPhoneInput" style="font-size: 0.88rem; font-weight: 600;">
+              Mobile Number <span class="required" style="color: var(--danger);">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="buyerPhoneInput" 
+              class="form-control" 
+              placeholder="e.g. 9876543210 (10 digits)"
+              maxlength="10"
+              autocomplete="tel"
+              required
+            />
+            <span class="error-message" id="buyerPhoneError"></span>
+          </div>
+
+          <!-- 3. Email Address -->
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label for="buyerEmailInput" style="font-size: 0.88rem; font-weight: 600;">
+              Email Address <span class="required" style="color: var(--danger);">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="buyerEmailInput" 
+              class="form-control" 
+              placeholder="e.g. rahul.sharma@example.com"
+              autocomplete="email"
+              required
+            />
+            <span class="error-message" id="buyerEmailError"></span>
+          </div>
+
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; margin-bottom: 0;">
+            * Your contact details will only be used by the seller to coordinate pickup.
+          </p>
+        </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeBuyModal()">Cancel</button>
-        <button class="btn btn-success" onclick="confirmPurchase()">✓ Confirm Purchase</button>
+        <button type="button" class="btn btn-secondary" onclick="closeBuyModal()">Cancel</button>
+        <button type="button" class="btn btn-success" id="confirmBookingBtn" onclick="confirmPurchase()">✓ Confirm Booking</button>
       </div>
     </div>
   </div>
 
-  <!-- 2. Purchase Completed Receipt Modal -->
+  <!-- 2. Purchase / Booking Completed Receipt Modal -->
   <div class="modal-overlay" id="receiptModal">
     <div class="modal-content">
       <div class="modal-header" style="background-color: var(--success-bg);">
-        <h3 style="color: var(--success);">🎉 Purchase Successful!</h3>
+        <h3 style="color: var(--success);">🎉 Booking Confirmed!</h3>
         <button class="btn-close-modal" onclick="closeReceiptModal()">&times;</button>
       </div>
       <div class="modal-body">
         <p style="color: var(--text-body); margin-bottom: 12px;">
-          Congratulations! Your purchase has been recorded and saved to <strong>My Purchases</strong>.
+          Congratulations! Your booking has been confirmed and saved to <strong>My Purchases</strong>.
         </p>
 
         <div class="receipt-box">
           <div class="receipt-row"><span>Transaction ID:</span> <strong id="receiptTxnId" style="font-family: monospace; color: var(--primary);">-</strong></div>
           <div class="receipt-row"><span>Item:</span> <span id="receiptItem">-</span></div>
-          <div class="receipt-row"><span>Amount Paid:</span> <strong id="receiptPrice">-</strong></div>
+          <div class="receipt-row"><span>Amount:</span> <strong id="receiptPrice">-</strong></div>
           <div class="receipt-row"><span>Date & Time:</span> <span id="receiptDate">-</span></div>
           <div class="receipt-row"><span>Seller:</span> <span id="receiptSeller">-</span></div>
-          <div class="receipt-row"><span>Buyer:</span> <span id="receiptBuyer">-</span></div>
+          <div class="receipt-row"><span>Buyer Name:</span> <span id="receiptBuyer">-</span></div>
+          <div class="receipt-row"><span>Buyer Contact:</span> <span id="receiptBuyerContact">-</span></div>
           <div class="receipt-row"><span>Status:</span> <span class="badge badge-available">● Completed</span></div>
         </div>
       </div>

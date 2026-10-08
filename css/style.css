@@ -9,31 +9,48 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Color Palette - Professional Blue & Neutral Theme */
-  --primary: #2563eb;         /* Vibrant Royal Blue */
-  --primary-hover: #1d4ed8;   /* Darker Blue for hover */
-  --primary-light: #eff6ff;   /* Soft Ice Blue background */
-  --primary-dark: #1e3a8a;    /* Deep Navy Blue */
+  --primary: #2563eb;
+  /* Vibrant Royal Blue */
+  --primary-hover: #1d4ed8;
+  /* Darker Blue for hover */
+  --primary-light: #eff6ff;
+  /* Soft Ice Blue background */
+  --primary-dark: #1e3a8a;
+  /* Deep Navy Blue */
 
-  --accent: #0284c7;          /* Sky Blue Accent */
-  --success: #10b981;         /* Emerald Green for available / success */
+  --accent: #0284c7;
+  /* Sky Blue Accent */
+  --success: #10b981;
+  /* Emerald Green for available / success */
   --success-bg: #ecfdf5;
-  --warning: #f59e0b;         /* Amber for alerts */
+  --warning: #f59e0b;
+  /* Amber for alerts */
   --warning-bg: #fffbeb;
-  --danger: #ef4444;          /* Red for delete / error */
+  --danger: #ef4444;
+  /* Red for delete / error */
   --danger-bg: #fef2f2;
-  --sold: #64748b;            /* Muted slate for sold items */
+  --sold: #64748b;
+  /* Muted slate for sold items */
 
   /* Neutral Backgrounds & Surfaces */
-  --bg-page: #f8fafc;         /* Light grayish blue background */
-  --bg-card: #ffffff;         /* Pure white for cards */
-  --bg-subtle: #f1f5f9;       /* Secondary neutral surface */
+  --bg-page: #f8fafc;
+  /* Light grayish blue background */
+  --bg-card: #ffffff;
+  /* Pure white for cards */
+  --bg-subtle: #f1f5f9;
+  /* Secondary neutral surface */
 
   /* Typography & Borders */
-  --text-main: #0f172a;       /* Slate 900 for high contrast headers */
-  --text-body: #334155;       /* Slate 700 for body reading */
-  --text-muted: #64748b;      /* Slate 500 for secondary text */
-  --border: #e2e8f0;          /* Clean light gray border */
-  --border-focus: #93c5fd;    /* Focus outline color */
+  --text-main: #0f172a;
+  /* Slate 900 for high contrast headers */
+  --text-body: #334155;
+  /* Slate 700 for body reading */
+  --text-muted: #64748b;
+  /* Slate 500 for secondary text */
+  --border: #e2e8f0;
+  /* Clean light gray border */
+  --border-focus: #93c5fd;
+  /* Focus outline color */
 
   /* Shadows & Radius */
   --radius-sm: 6px;
@@ -84,7 +101,10 @@ img {
   display: block;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: inherit;
 }
@@ -913,7 +933,7 @@ button, input, select, textarea {
   font-weight: 500;
 }
 
-.form-control.error + .error-message {
+.form-control.error+.error-message {
   display: block;
 }
 
@@ -1098,7 +1118,7 @@ textarea.form-control {
 .seller-name {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--text-main);
+  color: var(--error-main);
 }
 
 .seller-role {
@@ -1265,6 +1285,7 @@ textarea.form-control {
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1373,6 +1394,7 @@ textarea.form-control {
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
